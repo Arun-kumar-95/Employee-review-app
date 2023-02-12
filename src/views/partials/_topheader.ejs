@@ -1,0 +1,128 @@
+<header>
+    <div class="user--details--wrapper">
+        <h3>Welcome , <span class="user-info">
+                <%= locals.username%>
+            </span>
+        </h3>
+    </div>
+
+
+
+    <div class="nofification">
+        <button class="notify">
+            <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" preserveAspectRatio="xMidYMid meet"
+                focusable="false" class="style-scope yt-icon" style="pointer-events: none;">
+                <g class="style-scope yt-icon">
+                    <path
+                        d="M10,20h4c0,1.1-0.9,2-2,2S10,21.1,10,20z M20,17.35V19H4v-1.65l2-1.88v-5.15c0-2.92,1.56-5.22,4-5.98V3.96 c0-1.42,1.49-2.5,2.99-1.76C13.64,2.52,14,3.23,14,3.96l0,0.39c2.44,0.75,4,3.06,4,5.98v5.15L20,17.35z M19,17.77l-2-1.88v-5.47 c0-2.47-1.19-4.36-3.13-5.1c-1.26-0.53-2.64-0.5-3.84,0.03C8.15,6.11,7,7.99,7,10.42v5.47l-2,1.88V18h14V17.77z"
+                        class="style-scope yt-icon"></path>
+                </g>
+            </svg>
+        </button>
+
+
+
+
+        <% if(locals.notifications !="0" ){%>
+            <span class="notify-number">
+                <%= locals.notifications %>
+            </span>
+            <%}%>
+
+
+    </div>
+
+    <div class="logged-user--container">
+        <button class="user-control">
+            <span style="text-transform: uppercase;">
+                <%= locals.username.charAt(0) %>
+            </span>
+        </button>
+
+        <div class="logged-user-details">
+            <div class="logged--container">
+
+                <div class="user--profile">
+
+                    <div class="img--container">
+                        <img src="<%= locals.profilePic%>" alt="user-img">
+                    </div>
+
+
+                    <div class="user--email">
+                        <p>
+                            <%= locals.email%>
+                        </p>
+                    </div>
+
+
+
+                    <form action="/admin/dashboard/upload/<%= locals._id %>" enctype="multipart/form-data"
+                        class="avtar-form" method="POST">
+
+                        <div class="upload--wrapper">
+                            <input type="file" required id="file" name="avtar" />
+                            <button class="upload-btn">
+                                <span>CHANGE PIC</span>
+                            </button>
+                        </div>
+
+                        <div class="upload-control">
+                            <button type="submit" class="upload--img" style="display:none;"
+                                data-uid="<%= locals._id %>">
+                                <img src="../icons/filler-loader.gif" alt="loader" class="loader" style="display:none;">
+                                <span>
+                                    UPLOAD
+                                </span>
+                            </button>
+                            <span class="cancel-upload">&times;</span>
+                        </div>
+
+                    </form>
+
+
+
+                </div>
+
+
+
+
+                <form action="" method="POST">
+
+                    <% if(locals.authorizedRole=='Admin' ) { %>
+                        <button class="signout--btn" id="logout-btn" type="submit" data-role="admin-logout"
+                            aria-role="admin">
+
+                            <svg fill="currentColor" width="16" height="16" viewBox="0 0 18 18"
+                                xmlns="http://www.w3.org/2000/svg">
+
+                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                    d="M6.586 8L4.05 5.464L5.464 4.05L10.414 9L5.464 13.95L4.05 12.536L6.586 10H0V8H6.586ZM8 0H16C17.1 0 18 0.9 18 2V16C18 17.1 17.1 18 16 18H8V16H16V2H8V0Z"
+                                    fill="currentColor" />
+                            </svg>
+
+                            <span>Sign Out</span>
+                        </button>
+                        <%}else{%>
+
+                            <button class="signout--btn" id="logout-btn" type="submit" data-role="employee-logout"
+                                aria-role="user">
+
+                                <svg fill="currentColor" width="16" height="16" viewBox="0 0 18 18"
+                                    xmlns="http://www.w3.org/2000/svg">
+
+                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                        d="M6.586 8L4.05 5.464L5.464 4.05L10.414 9L5.464 13.95L4.05 12.536L6.586 10H0V8H6.586ZM8 0H16C17.1 0 18 0.9 18 2V16C18 17.1 17.1 18 16 18H8V16H16V2H8V0Z"
+                                        fill="currentColor" />
+                                </svg>
+
+                                <span>Sign Out</span>
+                            </button>
+
+                            <%}%>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</header>

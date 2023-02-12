@@ -1,0 +1,58 @@
+/* ========
+SEARCH CONTAINER 
+=========== */
+
+div.search--container{
+  padding:0 2%;
+}
+
+form.search--form{
+    display:flex;
+    border-radius: 0.75rem;
+    -webkit-border-radius: 0.75rem;
+    -moz-border-radius: 0.75rem;
+    -ms-border-radius: 0.75rem;
+    -o-border-radius: 0.75rem;
+}
+form.search--form button{
+    padding:0.75rem 1rem;
+    border-top-right-radius: 0.75rem;
+    border-bottom-right-radius: 0.75rem;
+    background-color: var(--clr-text);
+}
+
+form.search--form input{
+    padding: 0.75rem;
+    padding-left:1rem;
+    width: 100%;
+    flex:1;
+    border-top-left-radius: 0.75rem;
+    border-bottom-left-radius: 0.75rem;
+    outline:1px solid var(--clr-border);
+}
+
+form.search--form input:focus {
+    outline:1px solid var(--clr-assets);
+}
+
+
+div.table--container form  button{
+    padding:0.5rem;
+    display: inline-block;
+}
+
+div.table--container form  button:hover{
+    background-color: var(--clr-shadow);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+div.table--container form  button:hover > svg{
+    fill: var(--clr-green)
+}
+ 
+
+

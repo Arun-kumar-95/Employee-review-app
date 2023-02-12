@@ -1,0 +1,41 @@
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/error.css">
+<link rel="stylesheet" href="../css/form.css">
+
+
+<script src="../js/nav-popup.js" type="text/javascript" defer></script>
+<script src="../js/login.js" type="text/javascript" defer></script>
+<script src="../js/errorHandler.js" type="text/javascript" defer></script>
+
+
+<div id="app">
+    <div class="app__container">
+
+        <%- include('./partials/_navbar'); %>
+            <main>
+                <div class="form--wrapper">
+
+                    <form action="" class="login--form" method="POST" role="form">
+                        <span class="close">&times</span>
+                        <h2>Account login</h2>
+
+                        <label for="email">Email:</label>
+                        <input name="email" type="email" placeholder="Enter Email" required autocomplete="off"
+                            autofocus />
+                        <label for="password">Password</label>
+                        <input name="password" type="password" placeholder="Enter password" required
+                            autocomplete="off" />
+
+                        <button class="btn btnLogin control---btn" type="submit">
+                            <img src="../icons/filler-loader.gif" alt="loader" class="loader" style="display:none;">
+                            <span>
+                                Login
+                            </span>
+                        </button>
+                    </form>
+                </div>
+
+            </main>
+    </div>
+    <%- include('./partials/_error'); %>
+</div>

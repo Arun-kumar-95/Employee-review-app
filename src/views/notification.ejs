@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="../css/dashboard.css" type="text/css">
+<link rel="stylesheet" href="../css/error.css" type="text/css">
+<link rel="stylesheet" href="../css/popup.css" type="text/css">
+
+<script src="../js/main.js" type="text/javascript" defer></script>
+
+<script src="../js/notify.js" type="text/javascript" defer></script>
+<script src="../js/errorHandler.js" type="text/javascript" defer></script>
+<script src="../js/adminRequest.js" type="text/javascript" defer></script>
+
+
+
+<div class="dashoard--wrapper">
+    <div class="dashoard">
+
+        <%- include('./partials/_sidebar'); %>
+
+            <main>
+
+                <%- include('./partials/_topheader'); %>
+
+                    <div class="page--index clearfix">
+
+                        <h2>Dashboard</h2>
+                        <div class="page--location">
+                            <p>
+                                <%= locals.authorizedRole%> /
+                                    <span>Notification </span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <%if(locals.data.length){ %>
+
+                        <div class="notification__container">
+                            <% locals.data.forEach((item , index)=>{ %>
+
+                                <div class="notification">
+                                    <input type="checkbox" id="<%= item._id %>" />
+                                    <label>
+                                        <%= item.notificationText %>
+                                    </label>
+                                    <span id="<%= item._id %>">&times;</span>
+                                </div>
+
+                                <%})%>
+                        </div>
+
+                        <% }else{ %>
+                            <center>
+                                <p style="color:red;">No New Notification</p>
+                            </center>
+                            <%}%>
+
+
+
+            </main>
+    </div>
+    <%- include('./partials/_popup'); %>
+        <%- include('./partials/_error'); %>
+</div>

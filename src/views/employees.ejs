@@ -1,0 +1,89 @@
+<link rel="stylesheet" href="../css/dashboard.css" type="text/css">
+<link rel="stylesheet" href="../css/table.css" type="text/css">
+<link rel="stylesheet" href="../css/error.css" type="text/css">
+<link rel="stylesheet" href="../css/popup.css" type="text/css">
+
+<script src="../js/main.js" type="text/javascript" defer></script>
+<script src="../js/errorHandler.js" type="text/javascript" defer></script>
+
+
+<div class="dashoard--wrapper">
+    <div class="dashoard">
+        <%- include('./partials/_sidebar.ejs'); %>
+
+            <main>
+
+                <%- include('./partials/_topheader.ejs'); %>
+
+                    <!-- PAGE INDEX  -->
+                    <div class="page--index clearfix">
+
+                        <h2>Dashboard</h2>
+                        <div class="page--location">
+                            <p>
+                                <%= locals.authorizedRole%> /
+                                    <span>All Employees </span>
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <!-- employee markup -->
+
+                    <% if(locals.data.length> 0) {%>
+                        <div class="table--container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sno</th>
+                                        <th>Name</th>
+                                        <th>Email</th>
+                                        <th>Phone</th>
+                                        <th>Type</th>
+                                        <th>Joined At</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% locals.data.forEach((data , index)=>{ %>
+
+                                        <tr>
+                                            <td>
+                                                <%= index=index + 1 %>
+                                            </td>
+                                            <td style="text-transform: capitalize;">
+                                                <%= data.name%>
+                                            </td>
+                                            <td>
+                                                <%= data.email%>
+                                            </td>
+                                            <td>+91-<%= data.phone%>
+                                            </td>
+                                            <td>
+                                                <%= data.role%>
+                                            </td>
+                                            <td>
+                                                <%= data.createdAt.toDateString()%>
+                                            </td>
+
+                                        </tr>
+                                        <%})%>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <%}else{%>
+                            <center>
+                                <p style="color:red; margin-top:1em;">*No employee found </p>>
+
+                            </center>
+                            <%}%>
+
+
+
+            </main>
+    </div>
+    <%- include('./partials/_popup'); %>
+        <%- include('./partials/_error'); %>
+</div>

@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="../css/dashboard.css" type="text/css">
+
+<link rel="stylesheet" href="../css/table.css" type="text/css">
+<link rel="stylesheet" href="../css/error.css" type="text/css">
+<link rel="stylesheet" href="../css/popup.css" type="text/css">
+
+<script src="../js/main.js" type="text/javascript" defer></script>
+<script src="../js/errorHandler.js" type="text/javascript" defer></script>
+
+
+
+<div class="dashoard--wrapper">
+    <div class="dashoard">
+        <%- include('./partials/_sidebar.ejs'); %>
+
+            <main>
+
+                <%- include('./partials/_topheader.ejs'); %>
+
+                    <!-- PAGE INDEX  -->
+                    <div class="page--index clearfix">
+
+                        <h2>Dashboard</h2>
+                        <div class="page--location">
+                            <p>
+                                <%= locals.authorizedRole %> /
+                                    <span>Reviews </span>
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <!-- FEED BACK MARKUP-->
+
+                    <%if(locals.data.length> 0) {%>
+
+                        <div class="table--container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sno</th>
+                                        <th>Name</th>
+                                        <th>Reviewed By</th>
+                                        <th>Date</th>
+                                        <th>Feedback</th>
+                                        <th>Rated</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <%locals.data.forEach((data ,index)=>{%>
+
+                                        <tr>
+                                            <td>
+                                                <%= index=index + 1%>
+                                            </td>
+                                            <td style="text-transform:capitalize">
+                                                <%= data.feedbackTo %>
+                                            </td>
+
+                                            <td style="text-transform:capitalize">
+                                                <%= data.feedbackFrom %>
+                                            </td>
+                                            <td>
+                                                <%= data.createdAt.toDateString() %>
+                                            </td>
+                                            <td>
+                                                <%= data.feedback %>
+                                            </td>
+                                            <td>
+                                                <%= data.rating %>
+                                                    <img src="../svg/star.svg" alt="star-icon" class="start-icon">
+                                            </td>
+                                        </tr>
+                                        <%})%>
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <%}else{%>
+                            <center>
+                                <p style="color:red; margin-top:1em;">*No one has given feedback yet</p>
+                            </center>
+                            <%}%>
+
+
+
+            </main>
+    </div>
+    <%- include('./partials/_error'); %>
+        <%- include('./partials/_popup'); %>
+</div>

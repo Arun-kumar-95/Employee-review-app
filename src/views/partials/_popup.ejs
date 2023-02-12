@@ -1,0 +1,15 @@
+<div class="popup--wrapper logout--popup" role="popup">
+    <div class="popup--container">
+        <span class="popup--close--icon">&times;</span>
+        <div class="popup--description" role="description">
+        </div>
+
+        <input type="text" required role="input-text" style="display:none" class="popup--input" />
+
+        <div class="popup--control">
+            <button class="confirm--btn" type="submit" data-id="<%=locals._id%>"
+                aria-role="<%= locals.authorizedRole %>">Confirm</button>
+            <button class="cancel--btn" type="submit">Cancel</button>
+        </div>
+    </div>
+</div>

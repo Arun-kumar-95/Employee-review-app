@@ -1,0 +1,96 @@
+<link rel="stylesheet" href="../../css/main.css" type="text/css">
+<link rel="stylesheet" href="../../css/dashboard.css" type="text/css">
+<link rel="stylesheet" href="../../css/error.css" type="text/css">
+<link rel="stylesheet" href="../../css/form.css" type="text/css">
+<link rel="stylesheet" href="../../css/popup.css" type="text/css">
+
+<script src="../../js/main.js" type="text/javascript" defer></script>
+
+<script src="../../js/dashboard.js" type="text/javascript" defer></script>
+<script src="../../js/errorHandler.js" type="text/javascript" defer></script>
+<script src="../../js/updateEmployee.js" type="text/javascript" defer></script>
+
+
+
+
+<div class="dashoard--wrapper">
+    <div class="dashoard">
+
+        <%- include('./partials/_sidebar'); %>
+
+            <main>
+
+                <%- include('./partials/_topheader'); %>
+
+                    <div class="page--index clearfix">
+
+                        <h2>Dashboard</h2>
+                        <div class="page--location">
+                            <p>
+                                <%= locals.authorizedRole%> /
+                                    <span>Update Employee </span>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <div class="form--wrapper update--div">
+
+                        <form action="" class="update__form" method="POST" role="form">
+
+
+                            <h2>Update Employee!</h2>
+
+                            <label for="name">Name:</label>
+                            <input name="name" type="text" placeholder="Enter Name" required autofocus
+                                autocomplete="off" value="<%= locals.data.name %>" />
+                            <label for="email">Email:</label>
+                            <input value="<%= locals.data.email %>" name="email" type="email" placeholder="Enter Email"
+                                required autocomplete="off" />
+                            <label for="phone">Phone</label>
+                            <input value="<%= locals.data.phone %>" name="phone" type="text"
+                                placeholder="Enter phone number" required autocomplete="off" />
+
+
+                            <label for="role">Role</label>
+
+                            <div class="form-group">
+                                <% if(locals.data.role=="Employee" ) {%>
+                                    <input type="radio" name="role" value="Employee" required checked />
+                                    <%}else{%>
+                                        <input type="radio" name="role" value="Employee" required />
+                                        <%}%>
+
+                                            <span class="radio-text">
+                                                Employee
+                                            </span>
+                                            <% if(locals.data.role=="Admin" ) {%>
+                                                <input type="radio" name="role" value="Admin" style="margin-left:1em;"
+                                                    required checked />
+                                                <%}else{%>
+                                                    <input type="radio" name="role" value="Admin"
+                                                        style="margin-left:1em;" required />
+                                                    <%}%>
+                                                        <span class="radio-text">
+                                                            Admin
+                            </div>
+
+                            </span>
+
+                            <button class="btn btnRegister control---btn" type="submit">
+                                <img src="../../icons/filler-loader.gif" alt="loader" class="loader" style="display:none;">
+                                <span>
+                                    Update
+
+                                </span>
+                            </button>
+                        </form>
+                    </div>
+
+
+
+            </main>
+    </div>
+    <%- include('./partials/_popup'); %>
+        <%- include('./partials/_error'); %>
+</div>

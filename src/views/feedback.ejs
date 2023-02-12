@@ -1,0 +1,162 @@
+<link rel="stylesheet" href="../css/dashboard.css" type="text/css">
+<link rel="stylesheet" href="../css/feedback.css" type="text/css">
+<link rel="stylesheet" href="../css/error.css" type="text/css">
+<link rel="stylesheet" href="../css/popup.css" type="text/css">
+
+<script src="../js/main.js" type="text/javascript" defer></script>
+<script src="../js/feedback.js" type="text/javascript" defer></script>
+<script src="../js/adminRequest.js" type="text/javascript" defer></script>
+<script src="../js/errorHandler.js" type="text/javascript" defer></script>
+
+
+<div class="dashoard--wrapper">
+    <div class="dashoard">
+        <%- include('./partials/_sidebar.ejs'); %>
+
+
+            <main>
+
+                <%- include('./partials/_topheader.ejs'); %>
+
+
+                    <div class="page--index clearfix">
+
+                        <h2>Dashboard</h2>
+                        <div class="page--location">
+                            <p>
+                                <%= locals.authorizedRole%> /
+                                    <span>Feedback </span>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <% if(locals.isGrant) {%>
+
+                        <div class="feedback--form--wrap form--wrap">
+                            <p id="feedbackmsg"></p>
+                            <div class="feedback--wrapper">
+                                <div class="feedback-form">
+                                    <h3>Feedback To:
+                                        <span class="feedback--label">
+                                            *No user selected
+                                        </span>
+                                    </h3>
+                                    <textarea placeholder="Write Feedback here..." id="text-area" required
+                                        name="feedback" rows="5"></textarea>
+
+
+                                    <label for="rating">Overall rating:</label>
+
+                                    <div class="rate--container">
+                                        <div class="rate-div">
+                                            <button class="star--btn btn" type="button" data-star-value="1">
+                                                <img src="../svg/star.svg" alt="star--icon" class="star--icon">
+                                                <span>1 star</span>
+                                            </button>
+                                        </div>
+                                        <div class="rate-div">
+                                            <button class="star--btn btn" type="button" data-star-value="2">
+                                                <img src="../svg/star.svg" alt="star--icon" class="star--icon">
+                                                <span>2 star</span>
+                                            </button>
+                                        </div>
+                                        <div class="rate-div">
+                                            <button class="star--btn btn" type="button" data-star-value="3">
+                                                <img src="../svg/star.svg" alt="star--icon" class="star--icon">
+                                                <span>3 star</span>
+                                            </button>
+                                        </div>
+                                        <div class="rate-div">
+                                            <button class="star--btn btn" type="button" data-star-value="4">
+                                                <img src="../svg/star.svg" alt="star--icon" class="star--icon">
+                                                <span>4 star</span>
+                                            </button>
+                                        </div>
+                                        <div class="rate-div">
+                                            <button class="star--btn btn" type="button" data-star-value="5">
+                                                <img src="../svg/star.svg" alt="star--icon" class="star--icon">
+                                                <span>5 star</span>
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                    <button class="btn submitBtn feedbackBtn" type="button"
+                                        data-uid="<%= locals._id %>">
+                                        <img src="../icons/filler-loader.gif" alt="loader" class="loader"
+                                            style="display:none;">
+                                        <span class="btnText">Submit</span>
+                                    </button>
+                                </div>
+
+                                <div class="employee-wrapper">
+
+                                    <div class="select--employee">
+
+                                        <div class="slider--controls">
+                                            <button class="employee-reaction-button">
+
+                                                <svg fill="#f1f1f1" xmlns="http://www.w3.org/2000/svg" width="14"
+                                                    height="14" viewBox="0 0 306 306" role="img" class="slide--left">
+                                                    <title>Slide left</title>
+                                                    <path
+                                                        d="M247.35 35.7L211.65 0l-153 153 153 153 35.7-35.7L130.05 153z">
+                                                    </path>
+                                                </svg>
+
+
+                                            </button>
+                                        </div>
+
+
+                                        <div class="list--wrap">
+                                            <h3> Employee List </h3>
+                                        </div>
+
+                                        <ul class="employee--list">
+                                            <% locals.data.forEach((employee , index)=>{%>
+
+
+                                                <% if(employee._id==locals._id.toString()) {%>
+                                                    <li style="display:none;">
+                                                        <a href="javascript:void()" data-id="<%= employee._id %>"
+                                                            data-user="<%= employee.name %>" class="user">
+
+                                                            <%= employee.name %>
+                                                        </a>
+                                                    </li>
+                                                    <%}else{%>
+
+                                                        <li> <a href="javascript:void()" data-id="<%= employee._id %>"
+                                                                data-user="<%= employee.name %>" class="user">
+
+                                                                <%= employee.name %>
+                                                            </a> </li>
+
+                                                        <%}%>
+                                                            <%})%>
+
+
+                                        </ul>
+
+                                    </div>
+
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                        <%}else{%>
+
+                            <center>
+                                <p style="color:red;margin-top:2em;">*You are not allowed to give feedbacks</p>
+                            </center>
+
+                            <%}%>
+
+            </main>
+    </div>
+    <%- include('./partials/_popup'); %>
+        <%- include('./partials/_error'); %>
+</div>

@@ -1,0 +1,85 @@
+/* ===========
+  FORM WRAPPER
+==========*/
+
+
+div.form--wrap {
+   outline:1px solid;
+   max-width: 320px;
+   margin:0 auto;
+   margin-top:6em;
+   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+   border-radius: 0.5rem;
+   -webkit-border-radius: 0.5rem;
+   -moz-border-radius: 0.5rem;
+   -ms-border-radius: 0.5rem;
+   -o-border-radius: 0.5rem;
+}
+
+div.form--wrap form{
+  padding-bottom:1.5rem;
+}
+
+div.form--wrap  div{
+    background-color: var(--clr-nav-2);
+    text-align: center;
+    padding:0.85rem 0;
+}
+
+div.form--wrap div  h3{
+    color: var(--clr-white);
+    font-weight: var(--font-semi-bold);
+}
+
+div.form--wrap  textarea{
+    display: block;
+    width: 94%;
+    margin:0 auto;
+    margin-top:var(--mb-1);
+    padding:0.75rem;
+    font-family: inherit;
+    margin-bottom: var(--mb-1-25);
+    outline:1px solid var(--clr-border);
+  }
+  
+  div.form--wrap  textarea:focus{
+     outline:1px solid var(--clr-assets);
+  }
+
+
+div.form--wrap button.submitBtn{
+    padding:1rem;
+    background-color: var(--clr-primary);
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 120px;
+    margin:0 auto;
+    border-radius: 0.25rem;
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    -ms-border-radius: 0.25rem;
+    -o-border-radius: 0.25rem;
+}
+
+
+ 
+
+div.form--wrap button.submitBtn.inprogress{
+  pointer-events: none;
+}
+
+
+div.form--wrap button.submitBtn span{
+  margin-left: 0.75em;
+  text-transform: uppercase;
+  font-size: 1.1rem;
+  color: var(--clr-white);
+  font-weight: var(--font-semi-bold);
+  letter-spacing: 0.6px;
+}
+
+div.form--wrap button.submitBtn:focus{
+    outline-offset: 2px;
+    outline:1px solid;
+}

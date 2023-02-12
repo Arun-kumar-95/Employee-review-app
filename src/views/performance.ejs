@@ -1,0 +1,95 @@
+<link rel="stylesheet" href="../css/dashboard.css" type="text/css">
+<link rel="stylesheet" href="../css/error.css" type="text/css">
+<link rel="stylesheet" href="../css/popup.css" type="text/css">
+<link rel="stylesheet" href="../css/table.css" type="text/css">
+
+<script src="../js/main.js" type="text/javascript" defer></script>
+
+<script src="../js/dashboard.js" type="text/javascript" defer></script>
+<script src="../js/errorHandler.js" type="text/javascript" defer></script>
+
+
+
+
+<div class="dashoard--wrapper">
+    <div class="dashoard">
+
+        <%- include('./partials/_sidebar'); %>
+
+            <main>
+
+                <%- include('./partials/_topheader'); %>
+
+                    <div class="page--index clearfix">
+
+                        <h2>Dashboard</h2>
+                        <div class="page--location">
+                            <p>
+                                <%= locals.authorizedRole%> /
+                                    <span>Performance </span>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <!-- performance markup -->
+                    <% if(locals.data.length> 0){ %>
+
+                        <div class="table--container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sno</th>
+                                        <th>Name</th>
+                                        <th>Total Feedbacks</th>
+                                        <th>Below 4 Star
+                                        <th>Above 4 Star</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <% locals.data.forEach((item , index)=> { %>
+                                        <tr>
+                                            <td>
+                                                <%= index=index + 1%>
+                                            </td>
+                                            <td style="text-transform: uppercase;">
+                                                <%= item.name %>
+                                            </td>
+                                            <td>
+                                                <%= item.totalFeedbacks %>
+                                            </td>
+
+                                            <td>
+                                                <%= item.below4Star %>
+                                            </td>
+
+                                            <td>
+                                                <%= item.above4Star %>
+                                            </td>
+                                            <td>
+                                                <p class="batch <%= item.status%>">
+                                                    <%= item.status %>
+
+                                                </p>
+
+                                            </td>
+                                        </tr>
+
+                                        <%})%>
+                                </tbody>
+                            </table>
+
+                        </div>
+                        <%}%>
+
+
+
+
+
+
+            </main>
+    </div>
+    <%- include('./partials/_popup'); %>
+        <%- include('./partials/_error'); %>
+</div>

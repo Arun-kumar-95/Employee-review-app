@@ -1,0 +1,179 @@
+<link rel="stylesheet" href="../../css/main.css" type="text/css">
+<link rel="stylesheet" href="../../css/dashboard.css" type="text/css">
+<link rel="stylesheet" href="../../css/error.css" type="text/css">
+<link rel="stylesheet" href="../../css/popup.css" type="text/css">
+<link rel="stylesheet" href="../../css/table.css" type="text/css">
+
+<script src="../../js/main.js" type="text/javascript" defer></script>
+
+<script src="../../js/dashboard.js" type="text/javascript" defer></script>
+<script src="../../js/errorHandler.js" type="text/javascript" defer></script>
+<script src="../../js/profile.js" type="text/javascript" defer></script>
+
+
+
+
+
+<div class="dashoard--wrapper">
+    <div class="dashoard">
+
+        <%- include('./partials/_sidebar'); %>
+
+            <main>
+
+                <%- include('./partials/_topheader'); %>
+
+                    <div class="page--index clearfix">
+
+                        <h2>Dashboard</h2>
+                        <div class="page--location">
+                            <p>
+                                <%= locals.authorizedRole%> /
+                                    <span>Profile </span>
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <% if(locals.data.role=="Employee" ) { %>
+
+                        <section class="grand--section section--wrapper">
+                            <h3>Give Access To Feedback</h3>
+
+                            <button class="grant-access" uid="<%= locals.data._id%>"
+                                data-access="<%= locals.data.isGrant %>">
+
+                            </button>
+
+                        </section>
+
+
+                        <section class="issue--section section--wrapper">
+                            <h3>Resolve The Issue Once Added</h3>
+
+                            <% if(locals.data.issues.length> 0){%>
+                                <p class="info">Total Issue Raised : <%= locals.data.issues.length %>
+                                </p>
+
+                                <div class="table--container">
+                                    <table>
+                                        <thead>
+                                            <th>Sno</th>
+                                            <th>Issue Type</th>
+                                            <th>Issue</th>
+                                            <th>Issue Date</th>
+                                            <th>Issue Status</th>
+                                            <th>Action</th>
+                                        </thead>
+                                        <tbody>
+
+                                            <% locals.data.issues.forEach((data , index)=> {%>
+                                                <tr>
+                                                    <td>
+                                                        <%= index=index + 1 %>
+                                                    </td>
+                                                    <td>
+                                                        <%= data.issueType %>
+                                                    </td>
+                                                    <td>
+                                                        <%= data.issue %>
+                                                    </td>
+                                                    <td>
+                                                        <%= data.createdAt.toDateString() %>
+                                                    </td>
+                                                    <td>
+                                                        <p class="<%= data.issueStatus %> batch">
+                                                            <%= data.issueStatus %>
+
+                                                        </p>
+                                                    </td>
+                                                    <td>
+                                                        <form action="" class="update-issue-form">
+
+                                                            <select name="issueStatus" class="issueStatus"
+                                                                data-id="<%= data._id%>" uid="<%= locals.data._id%>"
+                                                                data-type="<%= data.issueType %>">
+                                                                <option value="">
+                                                                    Select
+                                                                </option>
+                                                                <option value="Rejected">
+                                                                    Rejected</option>
+                                                                <option value="Approved">Approved</option>
+                                                                <option value="Resolved">Resolved</option>
+                                                                <option value="Pending">Pending</option>
+                                                            </select>
+                                                        </form>
+                                                    </td>
+                                                </tr>
+                                                <%})%>
+
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                                <%}else{%>
+                                    <p class="info">*No Issue Found</p>
+
+                                    <%}%>
+                        </section>
+
+                        <%}%>
+
+                            <section class="section--wrapper feedback--section">
+                                <h3>Feedbacks Section </h3>
+
+                                <% if(locals.data.feedbacks.length> 0){ %>
+                                    <p class="info">Total Feedbacks : <%= locals.data.feedbacks.length %>
+                                    </p>
+                                    <div class="table--container">
+                                        <table>
+                                            <thead>
+                                                <tr>
+                                                    <th>Sno</th>
+                                                    <th>Review By</th>
+                                                    <th>Feedback</th>
+                                                    <th>Date</th>
+                                                    <th>Rating</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <% locals.data.feedbacks.forEach((data , index)=>{ %>
+                                                    <tr>
+                                                        <td>
+                                                            <%= index=index + 1 %>
+                                                        </td>
+                                                        <td style="text-transform: capitalize;">
+                                                            <%= data.feedbackTo %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data.feedback %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data.createdAt.toDateString() %>
+                                                        </td>
+                                                        <td>
+                                                            <%= data.rating %>
+                                                                <img src="../../svg/star.svg" alt="star-icon"
+                                                                    class="start-icon">
+                                                        </td>
+                                                    </tr>
+                                                    <%})%>
+
+
+                                            </tbody>
+                                        </table>
+
+                                    </div>
+                                    <%}else{%>
+                                        <p class="info">*No Feedback Found</p>
+                                        <%}%>
+
+                            </section>
+
+
+            </main>
+    </div>
+    <%- include('./partials/_popup'); %>
+        <%- include('./partials/_error'); %>
+</div>

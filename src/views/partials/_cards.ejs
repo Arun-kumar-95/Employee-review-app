@@ -1,0 +1,41 @@
+<div class="card--wrapper">
+
+
+    <div class="card--container">
+
+        <a href="dashboard/employees" class="card" style="background-color:#FFE5D9">
+            <p>Total Employee Listed</p>
+            <span>
+                <%= locals.totalEmployee %>
+            </span>
+            <img src="../svg/employee.png" alt="employee-icon" class="card-icon">
+
+            <div class="add-on-info">
+                <span>Click to see details</span>
+            </div>
+        </a>
+
+        <a href="dashboard/reviews" class="card" style="background-color:#CAF1DE">
+            <p>Total Feedbacks</p>
+            <span>
+                <%= locals.totalReviews %>
+            </span>
+            <img src="../svg/satisfaction.png" alt="review-icon" class="card-icon">
+            <div class="add-on-info">
+                <span>Click to see details</span>
+            </div>
+        </a>
+
+        <a href="dashboard/notifications" class="card" style="background-color:#D6CDEA">
+            <p>Notifications</p>
+            <span>
+                <%= totalRequest %>
+            </span>
+            <img src="../svg/notification.png" alt="notification" class="card-icon">
+
+            <div class="add-on-info">
+                <span>Click to see details</span>
+            </div>
+        </a>
+    </div>
+</div>

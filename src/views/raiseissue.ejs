@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="../css/dashboard.css" type="text/css">
+<link rel="stylesheet" href="../css/form-wrapper.css" type="text/css">
+<link rel="stylesheet" href="../css/error.css" type="text/css">
+<link rel="stylesheet" href="../css/popup.css" type="text/css">
+
+<script src="../js/main.js" type="text/javascript" defer></script>
+<script src="../js/errorHandler.js" type="text/javascript" defer></script>
+<script src="../js/issue.js" type="text/javascript" defer></script>
+<script src="../js/adminRequest.js" type="text/javascript" defer></script>
+
+
+<div class="dashoard--wrapper">
+    <div class="dashoard">
+        <%- include('./partials/_sidebar.ejs'); %>
+
+            <main>
+
+                <%- include('./partials/_topheader.ejs'); %>
+
+
+                    <div class="page--index clearfix">
+
+                        <h2>Dashboard</h2>
+                        <div class="page--location">
+                            <p>
+                                <%= locals.authorizedRole%> /
+                                    <span>Doubt </span>
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <!-- create doubt markup -->
+
+                    <div class="query--form form--wrap">
+                        <form action="" method="POST" class="issue-form">
+                            <div>
+                                <h3>Raise Issue</h3>
+                            </div>
+
+                            <textarea placeholder="Write your issue here.." id="text-area" required
+                                name="issue"></textarea>
+                            <button class="btn submitBtn" type="submit" data-id="<%= locals._id %>">
+                                <img src="../icons/filler-loader.gif" alt="loader" class="loader" style="display:none;">
+
+                                <span class="btnText">Submit</span>
+                            </button>
+
+
+                        </form>
+                    </div>
+
+
+
+
+            </main>
+    </div>
+    <%- include('./partials/_error'); %>
+    <%- include('./partials/_popup'); %>
+</div>

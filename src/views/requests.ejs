@@ -1,0 +1,154 @@
+<link rel="stylesheet" href="../css/dashboard.css" type="text/css">
+<link rel="stylesheet" href="../css/table.css" type="text/css">
+<link rel="stylesheet" href="../css/error.css" type="text/css">
+
+<link rel="stylesheet" href="../css/popup.css" type="text/css">
+
+<script src="../js/main.js" type="text/javascript" defer></script>
+<script src="../js/errorHandler.js" type="text/javascript" defer></script>
+<script src="../js/request.js" type="text/javascript" defer></script>
+
+
+
+<div class="dashoard--wrapper">
+    <div class="dashoard">
+        <%- include('./partials/_sidebar.ejs'); %>
+
+            <main>
+
+
+                <%- include('./partials/_topheader.ejs'); %>
+
+                    <!-- PAGE INDEX  -->
+                    <div class="page--index clearfix">
+
+                        <h2>Dashboard</h2>
+                        <div class="page--location">
+                            <p>
+                                <%= locals.authorizedRole%> /
+                                    <span>Notifications</span> 
+                            </p>
+                        </div>
+                    </div>
+
+
+
+                    <!-- isse markup -->
+
+                    <% if(locals.data.length> 0){ %>
+
+                        <div class="table--container">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Sno</th>
+                                        <th>Name</th>
+                                        <th>Request Type</th>
+                                        <th>Request Status</th>
+                                        <th>Date</th>
+                                        <th>Action</th>
+                                        <th>Trash</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <% locals.data.forEach((data , index)=>{%>
+
+                                        <tr>
+                                            <td>
+                                                <%= index=index + 1 %>
+                                            </td>
+                                            <td style="text-transform: capitalize;">
+                                                <%= data.user%>
+                                            </td>
+                                            <td>
+                                                <%= data.issueType %>
+                                            </td>
+                                            <td>
+                                                <p class="<%= data.issueStatus %> batch">
+                                                    <%= data.issueStatus %>
+
+                                                </p>
+                                            </td>
+                                            <td>
+                                                <%= data.createdAt.toDateString() %>
+                                            </td>
+
+                                            <% if(data.issueType=="Employee" ) {%>
+                                                <td>
+                                                    <form action="" class="update-employee-request-form">
+
+                                                        <select name="issueStatus" id="employeeStatus"
+                                                            data-id="<%= data._id%>" uid="<%= locals._id%>">
+                                                            <option value="">Select </option>
+                                                            <option value="false">Reject</option>
+                                                            <option value="true">Approve</option>
+
+                                                        </select>
+                                                    </form>
+                                                </td>
+
+                                                <%}else{%>
+                                                    <td>
+                                                        <form action="/admin/dashboard/profile/<%= data.user_id %>">
+                                                            <button class="action-btn" type="submit"
+                                                                data-id="<%= data._id %>">
+                                                                <svg id="icon-activities" viewBox="0 0 256 256"
+                                                                    width="20" height="20" fill="var(--clr-assets)"
+                                                                    style="pointer-events: none;">
+                                                                    <path
+                                                                        d="M128 10.3A117.7 117.7 0 1 0 245.7 128 117.7 117.7 0 0 0 128 10.3zm0 210.2a92.5 92.5 0 1 1 92.5-92.5 92.5 92.5 0 0 1-92.5 92.5z">
+                                                                    </path>
+                                                                    <path
+                                                                        d="M178.3 75a79.6 79.6 0 0 0-11.2 1.2q-7 1.2-10 3.7t-7 6q-4 4.2-13 17.3a290.3 290.3 0 0 0-16.3 26.3Q113 143 108 154a39.5 39.5 0 0 0-10-10q-5.4-4-10-4t-10 4q-5.7 4-5.7 9.5 0 3.7 5 9A135.2 135.2 0 0 1 90 179a69.5 69.5 0 0 0 5.3 7.7 9.6 9.6 0 0 0 2.7 1.6q1.7.8 8 .8 7.7 0 10.3-1a12 12 0 0 0 3.7-3q1.2-2 5.5-12.2a281.7 281.7 0 0 1 24.3-46.6q15.3-24 29.5-37a29.6 29.6 0 0 0 4-4.3 6 6 0 0 0 .8-3.3 5.4 5.4 0 0 0-1-4 5.7 5.7 0 0 0-4-1.6z">
+                                                                    </path>
+                                                                </svg>
+                                                            </button>
+
+                                                        </form>
+                                                    </td>
+                                                    <%}%>
+
+                                                        <td>
+                                                            <form action="" method="POST">
+                                                                <button class="trash-btn" type="submit"
+                                                                    data-id="<%= data._id %>">
+                                                                    <svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                                                        height="20" fill="currentColor"
+                                                                        viewBox="0 0 24 24"
+                                                                        preserveAspectRatio="xMidYMid meet"
+                                                                        focusable="false" style="pointer-events: none;">
+                                                                        <g>
+                                                                            <title>Remove</title>
+                                                                            <path
+                                                                                d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM19 4h-3.5l-1-1h-5l-1 1H5v2h14V4z">
+                                                                            </path>
+                                                                        </g>
+                                                                    </svg>
+                                                                </button>
+
+                                                            </form>
+                                                        </td>
+
+                                        </tr>
+                                        <%})%>
+
+
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <%}else{%>
+                            <center>
+                                <p style="color:red; margin-top:1em;">*No Issue Registered</p>
+                            </center>
+
+                            <%}%>
+            </main>
+    </div>
+
+    <%- include('./partials/_error'); %>
+        <%- include('./partials/_popup'); %>
+</div>

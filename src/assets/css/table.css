@@ -1,0 +1,127 @@
+/* =======
+    TABLE 
+=========  */
+
+div.table--container{
+    padding:0 2%;
+    margin:2em 0;
+}
+table{
+    width: 100%;
+    border-collapse: collapse;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    
+}
+
+table thead{
+    background-color:var(--clr-nav-2);
+    color:var(--clr-white);
+}
+
+table thead th {
+    color: var(--clr-assets);
+    font-size: 1.3rem;
+}
+
+table thead th ,
+table thead td{
+    padding:0.35rem;
+}
+
+table tbody td{
+    padding:0.5rem;
+    border:1px solid var(--clr-border);
+    font-size: 1.25rem;
+    text-align:center;
+    color: var(--clr-text);
+    line-height: 1.6;
+}
+
+ 
+table tbody button.edit-btn{
+    color: var(--clr-nav-2);
+    
+}
+table tbody button.trash-btn{
+    color: var(--clr-primary);
+}
+
+img.start-icon{
+    width:16px;
+     height:16px;
+    display: inline-block;
+    vertical-align: middle;
+    margin-top: -4px;
+}
+
+
+div.table--container form  button{
+    padding:0.5rem;
+    display: inline-block;
+}
+
+div.table--container form  button:hover{
+    background-color: var(--clr-shadow);
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    -ms-border-radius: 50%;
+    -o-border-radius: 50%;
+}
+
+div.table--container form  button:hover > svg{
+    fill: var(--clr-green)
+}
+ 
+
+
+
+
+
+
+
+
+table tbody p.batch{
+   
+    display: inline-block;
+    padding:0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    -webkit-border-radius: 0.25rem;
+    -moz-border-radius: 0.25rem;
+    -ms-border-radius: 0.25rem;
+    -o-border-radius: 0.25rem;
+}
+.Pending
+.Normal {
+    background-color: #FABB2D;
+    color: var(--clr-text);
+}
+.Rejected , .Low{
+    background-color:#EE454A;
+    color: var(--clr-white);
+}
+
+.Resolved ,
+.Good, 
+.Approved{
+    background-color: #3CB538;
+    color: var(--clr-white);
+}
+
+@media only screen and (min-width: 768px) {
+    table tbody td{
+        
+        padding:0.7rem 0.5rem
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+ 
+    table thead td{
+      font-size: 1.6rem;
+    }
+
+    table tbody td{
+        font-size: 1.3rem;
+    }
+}

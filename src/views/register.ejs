@@ -1,0 +1,63 @@
+<link rel="stylesheet" href="../css/styles.css">
+<link rel="stylesheet" href="../css/error.css">
+<link rel="stylesheet" href="../css/form.css">
+
+
+<script src="../js/nav-popup.js" type="text/javascript" defer></script>
+<script src="../js/register.js" type="text/javascript" defer></script>
+<script src="../js/errorHandler.js" type="text/javascript" defer></script>
+
+
+<div id="app">
+    <div class="app__container">
+
+        <%- include('./partials/_navbar'); %>
+
+            <main>
+
+                <div class="form--wrapper register--div">
+
+                    <form action="" class="register__form" method="POST" role="form">
+                        <span class="close">&times</span>
+
+                        <h2>Create an account!</h2>
+
+                        <label for="name">Name:</label>
+                        <input name="name" type="text" placeholder="Enter Name" required autofocus autocomplete="off" />
+                        <label for="email">Email:</label>
+                        <input name="email" type="email" placeholder="Enter Email" required autocomplete="off" />
+                        <label for="phone">Phone</label>
+                        <input name="phone" type="text" placeholder="Enter phone number" required autocomplete="off" />
+                        <label for="password">Password</label>
+                        <input name="password" type="password" placeholder="Enter password" required
+                            autocomplete="off" />
+
+                        <label for="role">Role</label>
+
+                        <div class="form-group">
+                            <input type="radio" name="role" value="Employee" required />
+                            <span class="radio-text">
+                                Employee
+                            </span>
+
+                            <input type="radio" name="role" value="Admin" style="margin-left:1em;" required />
+                            <span class="radio-text">
+                                Admin
+                        </div>
+
+                        </span>
+
+                        <button class="btn btnRegister control---btn" type="submit">
+                            <img src="../icons/filler-loader.gif" alt="loader" class="loader" style="display:none;">
+                            <span>
+                                Register
+
+                            </span>
+                        </button>
+                    </form>
+                </div>
+            </main>
+    </div>
+
+    <%- include('./partials/_error'); %>
+</div>

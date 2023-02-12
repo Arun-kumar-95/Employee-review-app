@@ -1,0 +1,60 @@
+<link rel="stylesheet" href="../css/dashboard.css" type="text/css">
+<link rel="stylesheet" href="../css/error.css" type="text/css">
+<link rel="stylesheet" href="../css/popup.css" type="text/css">
+
+<script src="../js/main.js" type="text/javascript" defer></script>
+
+<script src="../js/dashboard.js" type="text/javascript" defer></script>
+<script src="../js/errorHandler.js" type="text/javascript" defer></script>
+<script src="../js/adminRequest.js" type="text/javascript" defer></script>
+
+
+
+<div class="dashoard--wrapper">
+    <div class="dashoard">
+
+        <%- include('./partials/_sidebar'); %>
+
+            <main>
+
+                <%- include('./partials/_topheader'); %>
+
+                    <div class="page--index clearfix">
+
+                        <h2>Dashboard</h2>
+                        <div class="page--location">
+                            <p>
+                                <%= locals.authorizedRole%> /
+                                    <span>Dashboard </span>
+                            </p>
+                        </div>
+                    </div>
+
+
+                    <% if(locals.authorizedRole=='Admin' ) { %>
+                        <%- include('./partials/_cards'); %>
+
+                            <%}else{%>
+
+                                <div class="card--wrapper">
+                                    <div class="card--container" style="max-width:320px">
+                                        <a href="dashboard/notifications" class="card" style="background-color:#D6CDEA">
+                                            <p>Notifications</p>
+                                            <span>
+                                                <%= locals.notifications %>
+                                            </span>
+                                            <img src="../svg/notification.png" alt="notification" class="card-icon">
+
+                                            <div class="add-on-info">
+                                                <span>Click to see details</span>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                <%}%>
+
+            </main>
+    </div>
+    <%- include('./partials/_popup'); %>
+        <%- include('./partials/_error'); %>
+</div>
