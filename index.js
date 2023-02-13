@@ -5,9 +5,8 @@ const app = require(path.join(process.cwd(), "/src/server/main.js"));
 
 const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
- 
+
 const upload = require(path.join(process.cwd(), "./src/utils/multer.js"));
- 
 
 // require the routes
 const mainRoute = require(path.join(process.cwd(), "./src/routes/v1/main.js"));
