@@ -23,7 +23,7 @@ const employeeRoute = require(path.join(
 // Not found
 const { notFound } = require(path.join(
   process.cwd(),
-  "./src/Utils/notFound.js"
+  "./src/utils/notFound.js"
 ));
 
 // adding middlewares
