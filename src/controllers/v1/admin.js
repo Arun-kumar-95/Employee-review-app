@@ -273,7 +273,7 @@ module.exports.renderPerformance = async (req, res) => {
     }
 
     // sending back the response
-    return res.status(200).render("Performance", {
+    return res.status(200).render("performance", {
       title: "Performance",
       username: req.user.name,
       authorizedRole: req.user.role,
