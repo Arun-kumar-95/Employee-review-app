@@ -246,10 +246,10 @@ module.exports.renderPerformance = async (req, res) => {
       // based on feedback length and rating we give status
       if (feedbacks.length > 0) {
         // less than 40%
-        if (ratings.length < (feedbacks.length * 2) / 5) {
+        if (ratings.length > (feedbacks.length * 2) / 5) {
           status = "Low";
           // less than 80%
-        } else if (ratings.length < (feedbacks.length * 4) / 5) {
+        } else if (ratings.length > (feedbacks.length * 4) / 5) {
           status = "Normal";
         } else {
           status = "Good";
