@@ -63,7 +63,7 @@ module.exports.renderEmployee = async (req, res) => {
   try {
     // grab the employees
     const employees = await employeeSchema
-      .find({ isAccepted: true })
+      .find({ isApproved: true })
       .select("name email phone createdAt role")
       .sort({ createdAt: -1 });
 
