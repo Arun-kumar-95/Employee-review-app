@@ -304,7 +304,7 @@ module.exports.renderUpdate = async (req, res) => {
       .count();
 
     // sending the response
-    return res.status(200).render("Update", {
+    return res.status(200).render("update", {
       title: "Update Employee",
       username: req.user.name,
       authorizedRole: req.user.role,
