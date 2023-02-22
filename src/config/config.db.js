@@ -17,9 +17,12 @@ module.exports.connect = async (DATABASE_URL) => {
 // store connect value inside dbconnect
   const dbConnect = await mongoose.connect(DATABASE_URL, OPTIONS);
 
+//if not resolved then do this
+  
   if (!dbConnect) {
     return console.log("Error connecting to database");
   } else {
+// if resolved then perform this
     return console.log("Connected to database");
   }
 };
