@@ -1,25 +1,29 @@
 const express = require("express");
+// require the path module
 const path = require("path");
-
+// require the server
 const app = require(path.join(process.cwd(), "/src/server/main.js"));
-
+// require the cookie parser
 const cookieParser = require("cookie-parser");
+// require the body parser
 const bodyParser = require("body-parser");
-
+// require the upload function
 const upload = require(path.join(process.cwd(), "./src/utils/multer.js"));
 
 // require the routes
 const mainRoute = require(path.join(process.cwd(), "./src/routes/v1/main.js"));
+// require teh admin routes
 const adminRoute = require(path.join(
   process.cwd(),
   "./src/routes/v1/admin.js"
 ));
+// require the employee route
 const employeeRoute = require(path.join(
   process.cwd(),
   "./src/routes/v1/employee.js"
 ));
 
-// Not found
+// Not found middleware
 const { notFound } = require(path.join(
   process.cwd(),
   "./src/utils/notFound.js"
@@ -38,6 +42,7 @@ app.use(express.urlencoded({ limit: "25mb", extended: true }));
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// upload middleware
 app.use(upload);
 // cookie parser
 app.use(cookieParser());
@@ -62,6 +67,6 @@ app.use("/", mainRoute);
 app.use("/admin", adminRoute);
 app.use("/user", employeeRoute);
 
-// for file upload
-
+ 
+// not found middleware
 app.use(notFound);
