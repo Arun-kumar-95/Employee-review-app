@@ -1,4 +1,6 @@
+// require the mongoose
 const mongoose = require("mongoose");
+// creating feedback schemas
 const feedBackSchema = new mongoose.Schema({
   feedbackFrom: {
     type: String,
@@ -24,4 +26,5 @@ const feedBackSchema = new mongoose.Schema({
   },
 });
 
+// exporting the schema
 module.exports = mongoose.model("Feedback", feedBackSchema);
