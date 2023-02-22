@@ -1,15 +1,21 @@
+// require the path module
 const path = require("path");
+// require the employee schema
 const employeeSchema = require(path.join(
   process.cwd(),
   "./src/models/Employee.js"
 ));
+
+// require the error formatter helper function
+
 const { errorFormatter } = require(path.join(
   process.cwd(),
   "./src/utils/errorFormatter.js"
 ));
 
+// require the jwt 
 const jwt = require("jsonwebtoken");
-
+// exporting isAuthenticated function
 module.exports.isAuthenticated = async (req, res, next) => {
   try {
     // getting the token
@@ -29,6 +35,7 @@ module.exports.isAuthenticated = async (req, res, next) => {
     // calling the next
     next();
   } catch (err) {
+//     sending the response
     return res
       .status(500)
       .json({ success: false, message: errorFormatter(err.message) });
