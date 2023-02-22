@@ -1,11 +1,16 @@
+// require the package dependicies
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const multer = require("multer");
+
+//require the path module 
 const path = require("path");
-// initializing the multer storage
+
+// variable to store avtar path
 const AVTAR_PATH = path.join(process.cwd(), "./src/assets/avtars");
 
+// creating the employee schema
 const employeeSchema = new mongoose.Schema({
   name: {
     type: String,
@@ -94,7 +99,7 @@ const employeeSchema = new mongoose.Schema({
 });
 
 // METHODS
-
+// save methods whenever ther is change in database
 employeeSchema.pre("save", async function (next) {
   // create the salt
   let salt = await bcrypt.genSalt(10);
@@ -103,15 +108,16 @@ employeeSchema.pre("save", async function (next) {
     this.password = await bcrypt.hash(this.password, salt);
   }
 
+//calling the next middleware
   next();
 });
 
-// matchPassword
+// matchPassword function
 employeeSchema.methods.matchPassword = async function (password) {
   return await bcrypt.compare(password, this.password);
 };
 
-// generate token
+// generate token function
 
 employeeSchema.methods.generateToken = async function () {
   return jwt.sign({ _id: this._id }, process.env.JWT_SECRET, {
@@ -119,6 +125,7 @@ employeeSchema.methods.generateToken = async function () {
   });
 };
 
+// multer storage function
 var storage = multer.diskStorage({
   destination: function (req, file, cb) {
     cb(null, AVTAR_PATH);
@@ -128,9 +135,11 @@ var storage = multer.diskStorage({
   },
 });
 
-// statics
+// statics function to upload avtar
 employeeSchema.statics.uploadAvtar = multer({ storage: storage }).single(
   "avtar"
 );
 employeeSchema.statics.avtarPath = AVTAR_PATH;
+
+// exporting the employee schemas
 module.exports = mongoose.model("Employee", employeeSchema);
