@@ -1,4 +1,6 @@
+// require the mongoose package
 const mongoose = require("mongoose");
+// creating the issue schemas
 const issueSchema = new mongoose.Schema({
   user_id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -30,5 +32,5 @@ const issueSchema = new mongoose.Schema({
     default: new Date(Date.now()),
   },
 });
-
+// exporting the issue schemas
 module.exports = mongoose.model("Issue", issueSchema);
