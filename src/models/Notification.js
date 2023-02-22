@@ -1,4 +1,6 @@
+// require the mongoose
 const mongoose = require("mongoose");
+// creating the notification schemas
 const notifySchema = new mongoose.Schema({
   link_id: {
     type: mongoose.Schema.Types.ObjectId,
@@ -27,4 +29,5 @@ const notifySchema = new mongoose.Schema({
   },
 });
 
+// exporting the schemas
 module.exports = mongoose.model("Notification", notifySchema);
